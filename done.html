@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>اقرأ تنجح</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Free HTML Templates" name="keywords" />
+    <meta content="Free HTML Templates" name="description" />
+
+    <!-- Add this in the head section -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Flaticon Font -->
+    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+            @import url("https://fonts.googleapis.com/css2?family=Alkatra&family=Arimo:wght@400;600&family=Cairo:wght@500&family=IBM+Plex+Sans+Arabic:wght@600&family=Inconsolata:wght@700&family=Kanit:wght@500&family=Lilita+One&family=Lobster&family=Montserrat+Alternates:wght@200&family=Pacifico&family=Paytone+One&display=swap");
+
+        body {
+            background-image: url("images/bgg.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: max-width 0.3s ease, box-shadow 0.3s ease;
+        }
+        h1, h2, h3, h4, h5 {
+            text-align: center;
+            color: #00394f;
+            font-family: 'Cairo';
+        }
+        .name-box {
+            width: 50px;
+            height: 100px;
+            background-color: blue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .score-box {
+            background-color: #ffcc66;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            color: #fff;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        .score-box span {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ff6600;
+        }
+        .container:hover{
+            max-width: 600px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            background-color: #ffb7009f;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            max-width: 620px; /* Adjust the width as desired */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adjust shadow as desired */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>تهانينا  </h1>
+        <h1 id="userName" class="font-weight-bold text-center"></h1>
+       
+       
+        <div class="score-box">
+             <h3>النتيجة النهائية</h3><span id="score">0</span> <span> / 280</span>
+        </div>
+    </div>
+     <!------------------------------------------------------- Script ---------------------------------------------------------------->
+     <audio class="test2" src="sounds/انتهت اللعبة لقد كان.m4a" preload="auto"></audio>
+     <audio class="test" src="sounds/success-fanfare-trumpets-6185.mp3" preload="auto"></audio>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+   
+        <!------------------------------------------------------- Script ---------------------------------------------------------------->
+        <script>
+  document.addEventListener("DOMContentLoaded", function () {
+            // Get the audio elements
+            const audioElement = document.querySelector(".test");
+            const audioElement2 = document.querySelector(".test2");
+            audioElement.play();
+            // Play the second audio (test2) with a slight delay
+            setTimeout(function () {
+                audioElement2.play();
+            }, 2000); // Delay in milliseconds (3 seconds in this example)
+
+            // When the first audio (test) ends, play the second audio (test2)
+            audioElement.addEventListener("ended", function () {
+                audioElement2.play();
+            });
+        });
+  
+        // Retrieve the score value from the URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const scoreParam = urlParams.get('score');
+
+        // Parse the scoreParam as an integer (use 0 as default if scoreParam is not a valid number)
+        const decodedScore = parseInt(scoreParam) || 0;
+
+        // Get the <span> element to display the score
+        const scoreElement = document.getElementById("score");
+
+        // Update the score displayed on the page
+        scoreElement.textContent = decodedScore;
+
+
+             // --------------------- to get the username from the session ---------------
+
+             document.addEventListener("DOMContentLoaded", function () {
+            // Retrieve the username from sessionStorage
+            const userName = sessionStorage.getItem("userName");
+
+            // Check if the username exists
+            if (userName) {
+                // Use the userName as needed
+                console.log("User Name:", userName);
+
+                // Get the element to display the username
+                const userNameElement = document.getElementById("userName");
+                // Update the content of the element with the username
+                userNameElement.textContent = userName;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!-- AZUL CODING --------------------------------------- -->
+<!-- JavaScript - Drag & Drop Files & Elements -->
+<!-- https://youtu.be/lSCLnWoa6Tw -->
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Drag &amp; Drop - Azul Coding</title>
+        <style>
+              @import url('https://fonts.googleapis.com/css2?family=Alkatra&family=Arimo:wght@400;600&family=Cairo:wght@500&family=IBM+Plex+Sans+Arabic:wght@600&family=Inconsolata:wght@700&family=Kanit:wght@500&family=Lilita+One&family=Lobster&family=Montserrat+Alternates:wght@200&family=Pacifico&family=Paytone+One&display=swap');
+h4, span, a, h1,h2, P{
+    font-family: 'Cairo';
+}
+            body {
+                margin: 30px;
+                margin: 0;
+            padding: 0;
+            height: 100vh; 
+            background: url('game2src/4262432.jpg') no-repeat center center fixed;
+            background-size: cover;
+            }
+            * {
+                font-family: 'Roboto', sans-serif;
+            }
+            p, li {
+                font-size: 18px;
+            }
+            .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh; /* Set the height to the viewport height to center vertically */
+    gap: 15px;
+}
+
+        
+            .dropzone {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 55px;
+                color: #234478;
+                border: 5px solid #234478;
+    background-color: #94DBFD;
+  
+                border-radius: 70px;
+                transition: transform 0.5s;
+            }
+            .dropzone.dragover {
+                transform: scale(0.9);
+            }
+
+            /* Part 1 */
+            #file-dropzone {
+                width: 400px;
+                height: 200px;
+            }
+
+            /* Part 2 */
+            .box {
+                width: 100px;
+                height: 100px;
+                cursor: move;
+                user-select: none;
+            }
+            .box[data-item="A"] {
+                background-color: #FFDCA9;
+                border-color: #F97D02;
+            }
+            .box[data-item="B"] {
+                background-color: #BCF8B9;
+                border-color: #3CB43C;
+            }
+            
+            /* Part 3 */
+            .interact.dropzone {
+                width: 350px;
+                height: 350px;
+                transition: background-color 0.5s;
+            }
+            .drop-target {
+                background-color: #BCF8B9;
+            }
+            .draggable {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 55px;
+                color: #234478;
+                border: 2px solid #1576C1;
+                background-color: #94DBFD;
+                border-radius: 10px;
+                height: 80px;
+                width: 80px;
+                margin-bottom: 50px;
+                touch-action: none;
+            }
+            .draggable.can-drop {
+                background-color: transparent;
+                border: none;
+            }
+
+.circle {
+  border-radius: 50%;
+}
+
+
+.box {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    cursor: move;
+    user-select: none;
+    text-align: center;
+  }
+
+  /* Remove border and background */
+  .box[data-item="A"],
+  .box[data-item="B"],
+  .draggable {
+    border: 5px solid #234478;
+    background-color: #94DBFD;
+    border-radius: 70px;
+
+  }
+
+  /* Preserve the background color of the circle */
+  .interact.dropzone {
+    background-color: #94DBFD;
+  }
+
+  /* Highlight on drop */
+  .interact.dropzone.drop-target {
+    background-color: #BCF8B9;
+  }
+  .centered {
+  text-align: center;
+  background-color: rgba(45, 48, 227, 0.29);
+}
+
+
+        </style>
+        <script src="script.js"></script>
+
+        <!-- Part 3 -->
+        <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+    </head>
+    <body>
+        <h1 class="centered">تعرف على الحروف المنفصلة لكي تكمل الوجه الحزين</h1>
+        <!-- Part 2 -->
+      
+        <div class="container" style="margin-top: 100px;">
+            <div id="dropzoneB" class="interact dropzone circle" style="width: 500px; height: 500px; margin-top: 100px; margin-bottom: 200px;">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 30 70 Q 50 55, 70 70" style="fill: none; stroke: black; stroke-width: 3;" />
+              </svg>
+            </div>
+          </div>
+    
+        
+
+        <!-- Part 3 -->
+        <div class="draggable itemB" style="width: 100px; height: 100px;">و</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ف</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ق</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ك</div>
+        <div class="draggable itemB" style="width: 100px; height: 100px;">و</div>
+        <div class="draggable itemB" style="width: 100px; height: 100px;">ر</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ل</div>
+        <div class="draggable itemB" style="width: 100px; height: 100px;">ر</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">م</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ن</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ه</div>
+        <div class="draggable itemB" style="width: 100px; height: 100px;">ر</div>
+        <div class="draggable itemB" style="width: 100px; height: 100px;">ز</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ي</div>
+        <div class="draggable itemB" style="width: 100px; height: 100px;">ر</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ب</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ت</div>
+        <div class="draggable itemB" style="width: 100px; height: 100px;">ر</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ث</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ج</div>
+        <div class="draggable itemB" style="width: 100px; height: 100px;">د</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ح</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">خ</div>
+        <div class="draggable itemB" style="width: 100px; height: 100px;">ذ</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">س</div>
+        <div class="draggable itemB" style="width: 100px; height: 100px;">ز</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ش</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ص</div>
+        <div class="draggable itemB" style="width: 100px; height: 100px;">ز</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ط</div>
+        <div class="draggable itemB" style="width: 100px; height: 100px;">أ</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ظ</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">ع</div>
+        <div draggable="true" class="dropzone box" data-item="C" style="display: inline-block;">غ</div>
+        <div class="draggable itemB" style="width: 100px; height: 100px;">ر</div>
+
+        <audio src="game2src/mixkit-game-show-wrong-answer-buzz-950.wav" class="error"></audio>
+        <audio src="game2src/أحسنْتَ يا صديقي لقد.m4a" class="alert" ></audio>
+        <audio class="success" src="game2src/mixkit-bonus-earned-in-video-game-2058.wav"></audio>
+
+    </body>
+
+    <script>
+
+
+// Part 1: Drag & drop files
+
+document.addEventListener("DOMContentLoaded", event => {
+  const fileDropzone = document.getElementById("file-dropzone");
+  const output = document.getElementById("output");
+
+  if (window.FileList && window.File) {
+    fileDropzone.addEventListener("dragover", event => {
+      event.stopPropagation();
+      event.preventDefault();
+      event.dataTransfer.dropEffect = "copy";
+      fileDropzone.classList.add("dragover");
+    });
+
+    fileDropzone.addEventListener("dragleave", event => {
+      fileDropzone.classList.remove("dragover");
+      
+    });
+
+    fileDropzone.addEventListener("drop", event => {
+      fileDropzone.classList.remove("dragover");
+      event.stopPropagation();
+      event.preventDefault();
+      
+
+      for (const file of event.dataTransfer.files) {
+        const name = file.name;
+        const size = file.size ? Math.round(file.size / 1000) : 0;
+
+        if (file.type && file.type.startsWith("image/")) {
+            const li = document.createElement("li");
+            li.textContent = name + " (" + size + " KB)";
+            output.appendChild(li);
+        }
+      }
+    }); 
+  }
+});
+
+
+
+// Part 2: Drag & drop elements
+
+var draggedElement = null;
+var items;
+
+function handleDragStart(e) {
+    this.style.opacity = "0.4";
+    draggedElement = this;
+
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("item", this.innerHTML);
+
+     // Play the sound with className="error" here
+     const errorSound = document.getElementsByClassName('error')[0];
+    errorSound.play();
+}
+
+function handleDragOver(e) {
+    if (e.preventDefault) 
+        e.preventDefault();
+
+    e.dataTransfer.dropEffect = "move";
+ 
+    return false;
+
+    
+}
+
+function handleDragEnter(e) {
+    this.classList.add("dragover");
+   
+    const errorSound = document.getElementsByClassName('error')[0];
+    errorSound.play();
+}
+
+function handleDragLeave(e) {
+    this.classList.remove("dragover");
+   ;
+}
+
+function handleDrop(e) {
+    if (e.stopPropagation)
+        e.stopPropagation();
+
+    if (draggedElement != this) {
+        draggedElement.innerHTML = this.innerHTML;
+        draggedElement.setAttribute("data-item", this.innerHTML);
+
+        let replacedItem = e.dataTransfer.getData("item");
+        this.innerHTML = replacedItem;
+        this.setAttribute("data-item", replacedItem);
+       
+    }
+
+    return false;
+}
+
+function handleDragEnd(e) {
+    this.style.opacity = "1";
+
+    items.forEach(function(item) {
+        item.classList.remove("dragover");
+    });
+
+     // Stop the sound with className="error" when the drag operation ends
+     const errorSound = document.getElementsByClassName('error')[0];
+    errorSound.pause();
+    errorSound.currentTime = 0; // Reset the sound to the beginning
+}
+
+document.addEventListener("DOMContentLoaded", event => {
+    items = document.querySelectorAll(".container .box");
+
+    items.forEach(function(item) {
+      item.addEventListener("dragstart", handleDragStart);
+      item.addEventListener("dragenter", handleDragEnter);
+      item.addEventListener("dragover", handleDragOver);
+      item.addEventListener("dragleave", handleDragLeave);
+      item.addEventListener("drop", handleDrop);
+      item.addEventListener("dragend", handleDragEnd);
+    });
+});
+
+
+
+// Part 3: Using a plugin
+
+function dragMoveListener(event) {
+    var target = event.target;
+    var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+    var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+    target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+    target.setAttribute('data-x', x);
+    target.setAttribute('data-y', y);
+   
+}
+
+function onDragEnter(event) {
+    var draggableElement = event.relatedTarget;
+    var dropzoneElement = event.target;
+    dropzoneElement.classList.add("drop-target");
+    draggableElement.classList.add("can-drop");
+ 
+}
+
+function onDragLeave(event) {
+    event.target.classList.remove("drop-target");
+    event.relatedTarget.classList.remove("can-drop");
+
+
+}
+
+// function onDrop(event) {
+//     event.target.classList.remove("drop-target");
+//      // إذا كانت العناصر المسحوبة ذات الـ class "itemB" تمت الإفلات عليها
+//       if (event.relatedTarget.classList.contains("itemB")) {
+//         alert("تمت عملية السحب والإفلات بنجاح!");
+//       }
+// }
+var totalItemBElements = document.querySelectorAll(".itemB").length;
+var droppedItemBElements = 0;
+
+function dragMoveListener(event) {
+  var target = event.target;
+  var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+  var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+  target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+  target.setAttribute('data-x', x);
+  target.setAttribute('data-y', y);
+}
+function onDrop(event) {
+  event.target.classList.remove("drop-target");
+
+  // إذا كانت العناصر المسحوبة ذات الـ class "itemB" تمت الإفلات عليها
+  if (event.relatedTarget.classList.contains("itemB")) {
+    droppedItemBElements++;
+
+    // تشغيل الصوتية الناجحة عند كل سحبة ناجحة
+    const successSound = document.getElementsByClassName('success')[0];
+    successSound.play();
+
+    // عند الانتهاء من إفلات جميع العناصر
+    if (droppedItemBElements === totalItemBElements) {
+      const alertSound = document.getElementsByClassName('alert')[0];
+      alertSound.play();
+    }
+  }
+}
+
+
+document.addEventListener("DOMContentLoaded", event => {
+    window.dragMoveListener = dragMoveListener;
+
+    // here the ffirst of laod page
+    interact("#dropzoneA").dropzone({
+        accept: ".itemA",
+        overlap: 0.75,
+        ondragenter: onDragEnter,
+        ondragleave: onDragLeave,
+        ondrop: onDrop
+    });
+
+    interact("#dropzoneB").dropzone({
+        accept: ".itemB",
+        overlap: 0.75,
+        ondragenter: onDragEnter,
+        ondragleave: onDragLeave,
+        ondrop: onDrop
+
+        
+    });
+
+    interact(".draggable").draggable({
+        inertia: true,
+        autoScroll: true,
+        modifiers: [
+            interact.modifiers.restrictRect({
+                restriction: "parent",
+                endOnly: true
+            })
+        ],
+        listeners: { 
+            move: dragMoveListener
+        }
+        
+    });
+});
+    </script>
+</html>

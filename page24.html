@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>اقرأ تنجح</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Free HTML Templates" name="keywords" />
+    <meta content="Free HTML Templates" name="description" />
+
+    <!-- Add this in the head section -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Flaticon Font -->
+    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Alkatra&family=Arimo:wght@400;600&family=Cairo:wght@500&family=IBM+Plex+Sans+Arabic:wght@600&family=Inconsolata:wght@700&family=Kanit:wght@500&family=Lilita+One&family=Lobster&family=Montserrat+Alternates:wght@200&family=Pacifico&family=Paytone+One&display=swap");
+
+        h4,
+        span,
+        a,
+        h3,
+        h2,
+        h1,
+        P,
+        h5,
+        button,
+        div {
+            font-family: "Cairo";
+        }
+
+        .mainCard:hover {
+            transform: scale(1.1);
+        }
+
+        .card {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .lastestCard:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        .mainCard {
+            position: relative;
+        }
+
+        .errorIcon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: red;
+        }
+
+        .broken-card {
+            animation: breakCard 1s forwards;
+        }
+
+        @keyframes breakCard {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(0.7);
+            }
+        }
+
+        .stars-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 40;
+}
+
+.stars {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #e4d962;
+  clip-path: polygon(
+    50% 0%,
+    61.8% 38.2%,
+    100% 35.4%,
+    73.2% 61.8%,
+    82.6% 100%,
+    50% 76.4%,
+    17.4% 100%,
+    26.8% 61.8%,
+    0% 35.4%,
+    38.2% 38.2%
+  );
+  transform-style: preserve-3d; /* Enable 3D transformation for child elements */
+  animation: starsRotation 5s linear infinite;
+  box-shadow: 0 0 10px rgba(228, 217, 98, 0.7); /* Add a subtle shadow */
+  transform: translateZ(-15px); /* Adjust the Z-axis translation to make the 3D effect more prominent */
+}
+
+@keyframes starsRotation {
+  from {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(360deg);
+  }
+}
+
+
+
+
+        /* Add this new keyframes animation for twinkling */
+        @keyframes twinkleAnimation {
+            0% {
+                opacity: 0.8;
+            }
+
+            100% {
+                opacity: 0.3;
+            }
+        }
+
+        /* Custom styles for the modal */
+        .modal2 {
+            background: rgba(0, 0, 0, 0.5);
+            /* Dark background */
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            /* Higher z-index to be on top of other content */
+        }
+
+        .modal-content {
+            background: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 400px;
+            /* Set a maximum width for the modal if needed */
+            width: 100%;
+            z-index: 1001;
+            /* Higher z-index to be on top of the dark background */
+        }
+
+        /* Optional: Center the modal on smaller screens */
+        @media (max-width: 576px) {
+            .modal-content {
+                width: 80%;
+            }
+        }
+
+        /* Add this CSS to your existing styles */
+        .score-box {
+            color: white;
+            background-color: #00394f;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            border-radius: 8px;
+
+        }
+        .question-box{
+            color: white;
+            background-color: #00394f;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            height: 50px;
+            margin-top: 60px;
+        }
+
+        /* Additional CSS for draggable cards */
+        .draggable-card {
+            position: absolute;
+            opacity: 0.3;
+        }
+
+        .main-card-container {
+            position: relative;
+        }
+
+        /* Custom styles for the card animation */
+        .moveToMainCard {
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            opacity: 0.3;
+        }
+
+        .question {
+            text-align: right;
+        }
+        .nav-star {
+    width: 40px;
+    height: 40px;
+    background-color: #e4d962;
+    clip-path: polygon(
+      50% 0%,
+      61.8% 38.2%,
+      100% 35.4%,
+      73.2% 61.8%,
+      82.6% 100%,
+      50% 76.4%,
+      17.4% 100%,
+      26.8% 61.8%,
+      0% 35.4%,
+      38.2% 38.2%
+    );
+  }
+    </style>
+</head>
+<!-------------------------------------------------------body---------------------------------------------------------------->
+
+<body>
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-light position-relative shadow">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5">
+            <h1 class="text-left" style="margin-bottom: 60px;">التقدم</h1>
+
+            <div class="d-flex justify-content-end w-100">
+                <a href="" class="navbar-brand font-weight-bold text-secondary" style="font-size: 50px">
+                    <span class="text-primary">اقرأ تنجح</span>
+                    <img src="images/الشعار.jpg" width="60px" class="mr-2" />
+                </a>
+
+                 <!-- Stars in the navbar -->
+      <div class="stars-container d-flex align-items-center mt-4">
+        <!-- Stars will be dynamically added here -->
+      </div>
+
+                <!-- Add a new element to display the username -->
+                <div class="d-flex align-items-center">
+
+                    <h3 id="userName" class="font-weight-bold"></h3>
+                    <h3>،أهلًا </h3>
+                </div>
+
+            </div>
+
+        </nav>
+
+    </div>
+    <!-- Navbar End -->
+
+    <div class="container-fluid bg-primary d-flex align-items-center justify-content-center" style="min-height: 100vh">
+        <div class="row d-flex justify-content-center mt-3">
+         
+            <div class="col-lg-6 mt-3">
+                <h3 class="text-left score-box ms-3 mt-4 p-3 text-center"> <span id="score">0</span>:النتيجة<div class="mt-1">
+                    
+                    <h4 class="text-light">الوقت المتبقي: <span id="timer" class="text-danger">60</span></h4>
+                </div>
+            </h3>
+            </div>
+            <div class="col-lg-4  question-box" >
+                <h4 class="mt-2 text-light">ابحث عن الحرف الناقص ليكتمل الشكل الاّتي</h4>
+                <!-- Add any other content or styling for the question -->
+            </div>  
+
+
+            <!-- First Card -->
+            <div class="col-lg-12 d-flex justify-content-center" style="margin-bottom: 60px; margin-top: 40px;">
+                <div class="card shadow p-3 bg-white rounded mainCard" style="max-width: 210px">
+                    <img src="images/م1.jpg" class="img-fluid" alt="Image" />
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 mb-3 d-flex justify-content-center">
+                <div class="card shadow p-3 bg-white rounded lastestCard" id="falseCard"
+                    style="max-width: 210px; max-height: 285px">
+                    <img src="images/ع2.jpg" class="img-fluid" alt="Image" />
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 mb-3 d-flex justify-content-center">
+                <div class="card shadow p-3 bg-white rounded lastestCard" onclick="ConfirmRightCard(this)"
+                    style="max-width: 210px; max-height: 285px">
+                    <img src="images/م2.jpg" class="img-fluid" alt="Image" />
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-3 d-flex justify-content-center">
+                <div class="card shadow p-3 bg-white rounded lastestCard" id="falseCard"
+                    style="max-width: 210px; max-height: 285px">
+                    <img src="images/ل2.jpg" class="img-fluid" alt="Image" />
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-center mt-4">
+                    <div class>
+                        <button class="btn btn-block" onclick="resetGame()"
+                            style="background-color: rgb(6, 142, 15); height: 65px; width: 200px;">
+                            <h5 class="text-light">إعادة اللُعبة
+                            </h5>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmModalLabel">تأكيد</h5>
+
+                        </div>
+                        <div class="modal-body">هل أنت متأكد من اختيار هذا الكرت؟</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
+
+
+                            <button type="button" class="btn btn-primary" id="confirmButton"
+                                onclick="ConfirmErrorCard()">
+                                نعم
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end of model-->
+        </div>
+    </div>
+
+
+    <!-- Add a button to trigger the modal -->
+    <!-- Modal -->
+    <div class="modal2" tabindex="-1" id="customModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h2 class="modal-title ">الحرف التالي</h2>
+                </div>
+                <div class="modal-footer">
+                    <!-- Add the Next button -->
+                    <button type="button" style="width:1000px;" class="btn btn-primary" onclick="nextButtonClick()">هيا
+                        بنا</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   
+
+
+
+
+    <audio class="sound" src="sounds/إجابةٌ صحيحة.m4a" preload="auto"></audio>
+
+  
+    <!-- Add this audio element in the HTML -->
+    <audio class="errorSound" src="sounds/احابة خاطئة.wav" preload="auto"></audio>
+    <audio class="timeOut" src="sounds/احابة خاطئة.wav" preload="auto"></audio>
+
+    <audio class="errorSound" src="sounds/إجابةٌ خاطئة.m4a" preload="auto"></audio>
+
+    <audio class="SuccessSound" src="sounds/تصفيق.wav" preload="auto"></audio>
+    <audio class="soundd" src="sounds/م.mp3" preload="auto"></audio>
+
+
+
+    <audio class="timeOut" src="sounds/احابة خاطئة.wav" preload="auto"></audio>
+    <audio class="timeOut" src="sounds/الوقت انتهى.m4a" preload="auto"></audio>
+
+    <audio src="sounds/هيا نكتشف حرفًا اخر.m4a" class="nextPage"></audio>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <!------------------------------------------------------- Script ---------------------------------------------------------------->
+    <audio class="test" src="sounds/هيا بنا نستكشف حرفًا.m4a" preload="auto"></audio>
+
+    <!------------------------------------------------------- Script ---------------------------------------------------------------->
+    <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+    // Get the audio element with the class name "test"
+    const audioElement = document.querySelector(".test");
+
+    // Play the audio
+    audioElement.play();
+  });
+     function updateStars(score) {
+    // Get the stars container element
+    const starsContainer = document.querySelector(".stars-container");
+
+    // Clear the previous stars
+    starsContainer.innerHTML = "";
+
+    // Calculate the number of stars
+    const numStars = Math.floor(score / 10);
+
+    // Create stars based on the number of stars and append them to the navbar
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement("div");
+      star.classList.add("nav-star");
+      starsContainer.appendChild(star);
+    }
+  }
+
+   // Start the timer when the page loads
+   document.addEventListener("DOMContentLoaded", function () {
+    // Retrieve the score value from the URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const scoreParam = urlParams.get('score');
+
+    // Parse the scoreParam as an integer (use 0 as default if scoreParam is not a valid number)
+    const decodedScore = parseInt(scoreParam) || 0;
+
+    // Get the <span> element to display the score
+    const scoreElement = document.getElementById("score");
+
+    // Update the score displayed on the page
+    scoreElement.textContent = decodedScore;
+
+    // Call the function to update stars based on the score
+    updateStars(decodedScore);
+    // Start the timer
+    startTimer();
+  });
+  
+        document.addEventListener("DOMContentLoaded", function () {
+            const confirmButton = document.getElementById("confirmButton");
+            const latestCards = document.querySelectorAll("#falseCard");
+            latestCards.forEach((card) => {
+
+                card.addEventListener("click", function () {
+                    $("#confirmModal").modal("show");
+                    confirmButton.addEventListener("click", function () {
+                        // Handle the click action here if needed
+                        $("#confirmModal").modal("hide");
+                    });
+                });
+            });
+        });
+        //--------------------- error function -----------------------------------------
+        function ConfirmErrorCard() {
+            const errorSounds = document.getElementsByClassName("errorSound");
+            for (const sound of errorSounds) {
+                
+                sound.play();
+            }
+            const mainCard = document.querySelector(".mainCard");
+            mainCard.classList.add("broken-card");
+            const errorIcon = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "svg"
+            );
+            errorIcon.setAttribute("class", "errorIcon");
+            errorIcon.setAttribute("width", "100");
+            errorIcon.setAttribute("height", "100");
+            errorIcon.setAttribute("viewBox", "0 0 24 24");
+            errorIcon.setAttribute("fill", "none");
+            errorIcon.setAttribute("stroke", "currentColor");
+            errorIcon.setAttribute("stroke-width", "4");
+            errorIcon.setAttribute("stroke-linecap", "round");
+            errorIcon.setAttribute("stroke-linejoin", "round");
+
+            const iconPath = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "path"
+            );
+            iconPath.setAttribute("d", "M6 18L18 6M6 6l12 12");
+            errorIcon.appendChild(iconPath);
+            // Append the "x" icon to the main card
+            mainCard.appendChild(errorIcon);
+
+          
+            // Get the <span> element to display the score
+            const scoreElement = document.getElementById("score");
+                 // Retrieve the initial score value from the <span> element
+                    let score = parseInt(scoreElement.textContent) || 0;
+            // Update the score displayed on the page
+            scoreElement.textContent = score;
+            // to rest time display
+            timeLeft = 60;
+            setTimeout(() => {
+                displayModal();
+            }, 2000);
+        }
+
+
+        //--------------------- success function --------------------
+        function playOther() {
+            const successSoundss = document.getElementsByClassName("SuccessSound");
+            for (const sound of successSoundss) {
+                    sound.play();
+           
+          
+            }
+
+        }
+        function playA(){
+            const successSoundss = document.getElementsByClassName("sound");
+            for (const sound of successSoundss) {
+                    sound.play();
+           
+          
+            }
+        }
+        function displayModal() {
+            const modal = document.getElementById("customModal");
+            modal.style.display = "block";
+        }
+
+function ConfirmRightCard(clickedCard) {
+            const successSounds = document.getElementsByClassName("soundd");
+            for (const sound of successSounds) {
+                setTimeout(() => {
+                    sound.play();
+            }, 1000);
+                playA();
+            }
+            setTimeout(() => {
+                playOther();
+            }, 2000);
+
+// here I need to extract stars in the card that In click on it
+  
+
+            //move the card to the main card
+            const mainCard = document.querySelector(".mainCard");
+            // Get the position of the mainCard
+            const mainCardRect = mainCard.getBoundingClientRect();
+           // Get the position of the clicked card
+            const clickedCardRect = clickedCard.getBoundingClientRect();
+
+             // Create stars within the clicked card
+  const numStarsInCard = 10; // Adjust the number of stars as needed
+  for (let i = 0; i < numStarsInCard; i++) {
+    const star = document.createElement("div");
+    star.classList.add("stars");
+    star.style.position = "absolute";
+
+    // Calculate the position of the star within the clicked card
+    const starX = Math.random() * clickedCardRect.width -3; // Adjust the position as needed
+    const starY = Math.random() * clickedCardRect.height -3; // Adjust the position as needed
+
+    // Set the position of the star within the clicked card
+    star.style.left = `${starX}px`;
+    star.style.top = `${starY}px`;
+
+    // Add the star to the clicked card
+    clickedCard.appendChild(star);
+  }
+
+            // Calculate the translation values to move the clicked card to the position of the mainCard
+            const translateX = mainCardRect.left - clickedCardRect.left + mainCardRect.width / 2 - clickedCardRect.width / 2;
+            const translateY = mainCardRect.top - clickedCardRect.top + mainCardRect.height / 2 - clickedCardRect.height / 2;
+            // Apply the CSS class to the clicked card to initiate the transition
+            clickedCard.classList.add("moveToMainCard");
+            // Move the clicked card to the position of the mainCard
+            clickedCard.style.transform = `translate(${translateX}px, ${translateY}px)`;
+            // Update the opacity of the clicked card to 30%
+            clickedCard.style.opacity = "0.3";
+            // Optional: Remove the event listener from the clicked card to prevent further clicks
+            clickedCard.removeEventListener("click", ConfirmRightCard);
+
+
+                            // Get the <span> element to display the score
+                                const scoreElement = document.getElementById("score");
+
+// Retrieve the initial score value from the <span> element
+let score = parseInt(scoreElement.textContent) || 0;
+
+
+// Increase the score by 10
+score += 10;
+
+// Call the function to update stars based on the score
+updateStars(score);
+
+
+            // Update the score displayed on the page
+            scoreElement.textContent = score;
+
+            
+             // Encode the updated score as a URL parameter
+             const encodedScore = encodeURIComponent(score);
+
+            // to rest time display
+            timeLeft = 60;
+            // Display the modal for the next letter or handle any other logic
+            setTimeout(() => {
+                displayModal();
+            }, 4000);
+        }
+
+
+        //--------------------- Navigate to next page function --------------------
+        function nextButtonClick() {
+            // Get the score value from the element with the ID "score"
+            const scoreElement = document.getElementById("score");
+            const scoreValue = parseInt(scoreElement.innerText);
+
+            // Encode the score value as a URL parameter
+            const encodedScore = encodeURIComponent(scoreValue);
+
+            // Navigate to page2.html with the score as a URL parameter
+            window.location.href = `page25.html?score=${encodedScore}`;
+        }
+
+
+
+        // --------------------- to get the username from the session ---------------
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Retrieve the username from sessionStorage
+            const userName = sessionStorage.getItem("userName");
+
+            // Check if the username exists
+            if (userName) {
+                // Use the userName as needed
+                console.log("User Name:", userName);
+
+                // Get the element to display the username
+                const userNameElement = document.getElementById("userName");
+                // Update the content of the element with the username
+                userNameElement.textContent = userName;
+            }
+        });
+        //---------------- reset game function --------------------------------
+        function resetGame() {
+            window.location.href = `index.html?`;
+        }
+
+        //----------------time out -----------------------------------------------
+        function GameTimeOut() {
+            const timeOut = document.getElementsByClassName("timeOut");
+            for (const sound of timeOut) {
+                sound.play();
+            }
+            const mainCard = document.querySelector(".mainCard");
+            mainCard.classList.add("broken-card");
+            const errorIcon = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "svg"
+            );
+            errorIcon.setAttribute("class", "errorIcon");
+            errorIcon.setAttribute("width", "100");
+            errorIcon.setAttribute("height", "100");
+            errorIcon.setAttribute("viewBox", "0 0 24 24");
+            errorIcon.setAttribute("fill", "none");
+            errorIcon.setAttribute("stroke", "currentColor");
+            errorIcon.setAttribute("stroke-width", "4");
+            errorIcon.setAttribute("stroke-linecap", "round");
+            errorIcon.setAttribute("stroke-linejoin", "round");
+
+            const iconPath = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "path"
+            );
+            iconPath.setAttribute("d", "M6 18L18 6M6 6l12 12");
+            errorIcon.appendChild(iconPath);
+            // Append the "x" icon to the main card
+            mainCard.appendChild(errorIcon);
+
+           // Get the <span> element to display the score
+            const scoreElement = document.getElementById("score");
+            
+            // Retrieve the initial score value from the <span> element
+                let score = parseInt(scoreElement.textContent) || 0;
+            // Update the score displayed on the page
+            scoreElement.textContent = score;
+
+
+
+            setTimeout(() => {
+                displayModal();
+            }, 2000);
+
+        }
+        let timeLeft = 60; // Set the initial time in seconds (1 minute)
+
+        // Function to update the timer and check if the time is up
+        function startTimer() {
+            const timerElement = document.getElementById("timer");
+            timerElement.textContent = timeLeft; // Display the initial time
+            const timerInterval = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft; // Update the displayed time
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    // Time's up, show a pop-up message
+                    GameTimeOut();
+                    // to handle the timeout action.
+                }
+            }, 1000); // Run the interval every second (1000 milliseconds)
+        }
+        //----------- function GameTimeOut() -------------------
+
+ 
+        // Start the timer when the page loads
+        document.addEventListener("DOMContentLoaded", function () {
+            startTimer();
+            
+
+        });
+
+
+     
+// Retrieve the score value from the URL parameter
+const urlParams = new URLSearchParams(window.location.search);
+  const scoreParam = urlParams.get('score');
+
+  // Parse the scoreParam as an integer (use 0 as default if scoreParam is not a valid number)
+  const decodedScore = parseInt(scoreParam) || 0;
+
+  // Get the <span> element to display the score
+  const scoreElement = document.getElementById("score");
+
+  // Update the score displayed on the page
+  scoreElement.textContent = decodedScore;
+ 
+  
+    </script>
+</body>
+
+</html>

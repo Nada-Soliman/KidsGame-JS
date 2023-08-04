@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop Example</title>
+    <style>
+        .drag-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .drag-item {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            cursor: move;
+        }
+
+        .target-container {
+            width: 200px;
+            height: 200px;
+            background-color: lightgray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .drop-marker {
+            width: 100%;
+            height: 2px;
+            background-color: red;
+            position: absolute;
+            bottom: 50%;
+            display: none;
+        }
+
+        .target-container.dragging .drop-marker {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="drag-container">
+        <div class="drag-item" draggable="true" ondragstart="dragStart(event)">Drag me!</div>
+    </div>
+
+    <div class="target-container" ondragover="dragOver(event)" ondragend="dragEnd(event)" ondrop="drop(event)">
+        <div class="drop-marker"></div>
+        Drop here
+    </div>
+
+    <script>
+        let draggedItem = null;
+        let dropMarker = null;
+
+        function dragStart(event) {
+            draggedItem = event.target;
+            event.dataTransfer.setData("text/plain", ""); // Required for Firefox
+        }
+
+        function dragOver(event) {
+            event.preventDefault();
+            if (!dropMarker) {
+                dropMarker = document.querySelector('.drop-marker');
+            }
+
+            // Get the mouse position within the target container
+            const rect = event.currentTarget.getBoundingClientRect();
+            const offsetX = event.clientX - rect.left;
+            const offsetY = event.clientY - rect.top;
+
+            // Position the drop marker
+            dropMarker.style.left = `${offsetX}px`;
+            dropMarker.style.top = `${offsetY}px`;
+        }
+
+        function dragEnd(event) {
+            event.preventDefault();
+            const targetContainer = event.target;
+
+            // Remove the drop marker
+            targetContainer.classList.remove('dragging');
+            dropMarker.style.display = 'none';
+
+            // Append the dragged item to the target container
+            targetContainer.appendChild(draggedItem);
+            draggedItem = null;
+        }
+    </script>
+</body>
+</html>

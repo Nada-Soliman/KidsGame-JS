@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>KidKinder - Kindergarten Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Flaticon Font -->
+    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alkatra&family=Arimo:wght@400;600&family=Cairo:wght@500&family=IBM+Plex+Sans+Arabic:wght@600&family=Inconsolata:wght@700&family=Kanit:wght@500&family=Lilita+One&family=Lobster&family=Montserrat+Alternates:wght@200&family=Pacifico&family=Paytone+One&display=swap');
+
+        h4,
+        span,
+        a,
+        h1,
+        h2,
+        P {
+            font-family: 'Cairo';
+        }
+
+        /* CSS for the background overlay */
+        .modal2 {
+            background: rgba(0, 0, 0, 0.5);
+            /* Dark background */
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            /* Higher z-index to be on top of other content */
+        }
+
+        /* CSS for the modal content */
+        .modal-content {
+            background: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 400px;
+            /* Set a maximum width for the modal if needed */
+            width: 100%;
+            z-index: 1001;
+            /* Higher z-index to be on top of the dark background */
+        }
+
+        /* Optional: Center the modal on smaller screens */
+        @media (max-width: 576px) {
+            .modal-content {
+                width: 80%;
+            }
+        }
+
+
+        .container-fluid {
+            background-color: #2c3e50;
+            /* Dark blue background color */
+        }
+
+        .d-flex {
+            flex-wrap: wrap;
+            /* Allow the elements to wrap to the next line when there's not enough space */
+        }
+
+        .circle-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin: 10px;
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .circle-link:hover {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        /* Media query for small screens (up to 576px width) */
+        @media (max-width: 576px) {
+            .circle-link {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+        }
+
+        /* Media query for medium screens (576px to 992px width) */
+        @media (min-width: 577px) and (max-width: 992px) {
+            .circle-link {
+                width: 45px;
+                height: 45px;
+                font-size: 16px;
+            }
+        }
+
+        /* Media query for large screens (992px and above) */
+        @media (min-width: 993px) {
+            .circle-link {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+        }
+        .section-title span:hover{
+            background-color: #17a2b8;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-light position-relative shadow">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5">
+            <div class="d-flex justify-content-end w-100">
+                <a href="" class="navbar-brand font-weight-bold text-secondary" style="font-size: 50px;">
+                    <span class="text-primary">اقرأ تنجح</span>
+                    <img src="images/الشعار.jpg" width="60px" class="mr-2">
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Navbar End -->
+
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary px-0 px-md-5">
+        <div class="row align-items-center px-3">
+            <div class="col-lg-6 text-center text-lg-right">
+                <img class="img-fluid mt-5" src="images/man.png" alt="">
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <h4 class="text-white mb-4 mt-5 mt-lg-0">تعلم الحروف</h4>
+                <h1 class="display-3 font-weight-bold text-white">استكشاف الحروف</h1>
+                <p class="text-white mb-4">أهلا صديقي هيا بنا ننطلق في لعبة استكشاف الحروف</p>
+                <a class="btn btn-secondary mt-1 py-3 px-5 mb-4" onclick="playAudio()">ابدأ الاّن </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div class="modal2" tabindex="-1" id="nameModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h2 class="modal-title">ادخل اسمك هنا </h2>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="userNameInput" class="form-control text-lg-right"
+                        style="color:black; font-size: 30px;" placeholder="الاسم" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" style="width:90px; height: 50px;"
+                        onclick="saveUserName()">
+                        <p>لنبدأ</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header End -->
+
+
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-secondary text-white py-5 px-sm-3 px-md-5">
+        <div class="text-center pb-2">
+            <p class="section-title px-5"><span class="px-2" style="font-size: 40px;">الحروف الأبجدية</span></p><br>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+
+            <a href="page1.html" class="circle-link">أ</a>
+            <a href="page2.html" class="circle-link">ب</a>
+            <a href="page3.html" class="circle-link">ت</a>
+            <a href="page4.html" class="circle-link">ث</a>
+            <a href="page5.html" class="circle-link">ج</a>
+            <a href="page6.html" class="circle-link">ح</a>
+            <a href="page7.html" class="circle-link">خ</a>
+            <a href="page8.html" class="circle-link">د</a>
+            <a href="page9.html" class="circle-link">ذ</a>
+            <a href="page10.html" class="circle-link">ر</a>
+            <a href="page11.html" class="circle-link">ز</a>
+            <a href="page12.html" class="circle-link">س</a>
+            <a href="page13.html" class="circle-link">ش</a>
+            <a href="page14.html" class="circle-link">ص</a>
+            <a href="page15.html" class="circle-link">ض</a>
+            <a href="page16.html" class="circle-link">ط</a>
+            <a href="page17.html" class="circle-link">ظ</a>
+            <a href="page18.html" class="circle-link">ع</a>
+            <a href="page19.html" class="circle-link">غ</a>
+            <a href="page20.html" class="circle-link">ف</a>
+            <a href="page21.html" class="circle-link">ق</a>
+            <a href="page22.html" class="circle-link">ك</a>
+            <a href="page23.html" class="circle-link">ل</a>
+            <a href="page24.html" class="circle-link">م</a>
+            <a href="page25.html" class="circle-link">ن</a>
+            <a href="page26.html" class="circle-link">ه</a>
+            <a href="page27.html" class="circle-link">و</a>
+            <a href="page28.html" class="circle-link">ي</a>
+        </div>
+
+
+    </div>
+
+    <div class="container-fluid bg-secondary pt-5 pb-3">
+        <div class="container">
+            <div class="text-center pb-2">
+                <p class="section-title px-5"><span class="px-2" style="font-size: 40px;">لإتقان القراءة والكتابة بإمكانك طلب الكتب الآتية</span></p>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-4 col-md-6  mb-4 portfolio-item">
+                    <div class="position-relative overflow-hidden mb-2">
+                        <img class="img-fluid w-100" src="images/الجزء الأول.jpg" alt="">
+                        <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
+                            <a href="images/الجزء الأول.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-plus text-white" style="font-size: 60px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item">
+                    <div class="position-relative overflow-hidden mb-2">
+                        <img class="img-fluid w-100" src="images/الجزء الثاني.jpg" alt="">
+                        <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
+                            <a href="images/الجزء الثاني.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-plus text-white" style="font-size: 60px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item">
+                    <div class="position-relative overflow-hidden mb-2">
+                        <img class="img-fluid w-100" src="images/الجزء الثالث.jpg" alt="">
+                        <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
+                            <a href="images/الجزء الثالث.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-plus text-white" style="font-size: 60px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid text-center bg-secondary pt-5 pb-3">
+        <div class="container">
+            <div class="text-center pb-2">
+                <p class="section-title px-5"><span class="px-2" style="font-size: 40px;">سؤال الحروف المنفصلة</span></p>
+                <div class="pl-3  mt-4">
+                 <button class="btn btn-primary" style="width: 200px;" onclick="goTogame2()"><h3>هيا بنا</h3></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid text-center bg-secondary pt-5 pb-3">
+        <div class="container ">
+            <div class="text-center pb-2">
+                <p class="section-title px-5"><span class="px-2" style="font-size: 40px;">وسائل التواصل</span></p>
+                <div class="pl-3">
+                    <h4 class="fa fa-envelope text-primary"></h4>
+                    <h4 class="text-white"> Nima.meshaikhi@moe.om</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer End -->
+
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary p-3 back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    <audio src="sounds/هيا بنا ننطلق في رحل.m4a" id="myAudio"></audio>
+    <!-- <audio id="myAudio">
+        <source src="sounds/هيا بنا ننطلق في رحل.m4a" type="audio/mpeg">
+      </audio> -->
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("myAudio").play();
+        }
+        function playAudio() {
+            const nameModal = document.getElementById('nameModal');
+            if (nameModal) {
+                nameModal.style.display = 'block';
+            }
+        }
+        function saveUserName() {
+            const userNameInput = document.getElementById('userNameInput');
+            if (userNameInput && userNameInput.value.trim() !== '') {
+                const userName = userNameInput.value.trim();
+                // Save the user's name in the session
+                sessionStorage.setItem('userName', userName);
+
+                // Hide the name input modal
+                const nameModal = document.getElementById('nameModal');
+                if (nameModal) {
+                    nameModal.style.display = 'none';
+                }
+
+                window.location.href = `page1.html`;
+            }
+        }
+        function goTogame2(){
+            
+            window.location.href = `game2.html`;
+              
+        }
+
+
+    </script>
+</body>
+
+</html>

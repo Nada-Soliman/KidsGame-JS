@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>اقرأ تنجح</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Free HTML Templates" name="keywords" />
+    <meta content="Free HTML Templates" name="description" />
+
+    <!-- Add this in the head section -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Flaticon Font -->
+    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Alkatra&family=Arimo:wght@400;600&family=Cairo:wght@500&family=IBM+Plex+Sans+Arabic:wght@600&family=Inconsolata:wght@700&family=Kanit:wght@500&family=Lilita+One&family=Lobster&family=Montserrat+Alternates:wght@200&family=Pacifico&family=Paytone+One&display=swap");
+
+        h4,
+        span,
+        h3,
+        a,
+        h1,
+        h2,
+        P,
+        h5,
+        button,
+        div {
+            font-family: "Cairo";
+        }
+
+        .mainCard:hover {
+            transform: scale(1.1);
+        }
+
+        .card {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .lastestCard:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        .mainCard {
+            position: relative;
+        }
+
+        .errorIcon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: red;
+        }
+
+        .broken-card {
+            animation: breakCard 1s forwards;
+        }
+
+        @keyframes breakCard {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(0.7);
+            }
+        }
+
+        /* Define the keyframes for the stars animation */
+        @keyframes starsAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(40deg);
+            }
+
+            70% {
+                opacity: 0.8;
+                transform: translateY(100vh) rotate(1080deg);
+            }
+        }
+
+        /* Style the stars */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 40;
+            /* Adjust the z-index value if needed */
+        }
+
+        .stars {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #f5e63e;
+            clip-path: polygon(50% 0%, 61.8% 38.2%, 100% 35.4%, 73.2% 61.8%, 82.6% 100%, 50% 76.4%, 17.4% 100%, 26.8% 61.8%, 0% 35.4%, 38.2% 38.2%);
+            animation: starsAnimation 1s linear;
+        }
+
+
+
+        /* Custom styles for the modal */
+.modal2 {
+    background: rgba(0, 0, 0, 0.5); /* Dark background */
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; /* Higher z-index to be on top of other content */
+}
+
+.modal-content {
+    background: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px; /* Set a maximum width for the modal if needed */
+    width: 100%;
+    z-index: 1001; /* Higher z-index to be on top of the dark background */
+}
+
+/* Optional: Center the modal on smaller screens */
+@media (max-width: 576px) {
+    .modal-content {
+        width: 80%;
+    }
+}
+.score-box {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    border-radius: 8px;
+
+    
+}
+
+    </style>
+</head>
+<body>
+    
+      <!-- Navbar Start -->
+      <div class="container-fluid bg-light position-relative shadow">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5">
+            <div class="d-flex justify-content-end w-100">
+                <a href="" class="navbar-brand font-weight-bold text-secondary" style="font-size: 50px">
+                    <span class="text-primary">اقرأ تنجح</span>
+                    <img src="images/الشعار.jpg" width="60px" class="mr-2" />
+                </a>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+    <div class="container-fluid bg-primary d-flex align-items-center justify-content-center" style="min-height: 100vh">
+
+
+        <div class="row d-flex justify-content-center mt-3">
+            
+        </div>
+        <div class="row">
+            <div class="col-3 mt-3">
+                <h1>حرف الباء</h1>
+                <h3 class="text-left score-box p-3"> <span id="score">0</span>:النتيجة   </h3>                
+            </div>
+
+            <!-- First Card -->
+
+            <div class="col-lg-12 d-flex justify-content-center" style="margin-bottom: 60px">
+                <div class="card shadow p-3 bg-white rounded mainCard" style="max-width: 250px">
+                    <img src="images/ب1.jpg" class="img-fluid" alt="Image" />
+                </div>
+            </div>
+            <!-- Add other cards here -->
+
+            <!-- Latest Cards -->
+
+            <div class="col-lg-4 mb-3 d-flex justify-content-center">
+                <div class="card shadow p-3 bg-white rounded lastestCard" id="falseCard"
+                    style="max-width: 210px; max-height: 285px">
+                    <img src="images/ت2.jpg" class="img-fluid" alt="Image" />
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-3 d-flex justify-content-center">
+                <div class="card shadow p-3 bg-white rounded lastestCard"  onclick="ConfirmRightCard()"
+                    style="max-width: 210px; max-height: 285px">
+                    <img src="images/ب2.jpg" class="img-fluid" alt="Image" />
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-3 d-flex justify-content-center">
+                <div class="card shadow p-3 bg-white rounded lastestCard" id="falseCard"
+                    style="max-width: 210px; max-height: 285px">
+                    <img src="images/ث2.jpg" class="img-fluid" alt="Image" />
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmModalLabel">تأكيد</h5>
+
+                        </div>
+                        <div class="modal-body">هل أنت متأكد من اختيار هذا الكرت؟</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
+
+
+                            <button type="button" class="btn btn-primary" id="confirmButton"
+                                onclick="ConfirmErrorCard()">
+                                نعم
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end of model-->
+        </div>
+    </div>
+
+
+
+
+    <!-- Add a button to trigger the modal -->
+<!-- Modal -->
+<div class="modal2" tabindex="-1" id="customModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <h2 class="modal-title ">الحرف التالي</h2>
+            </div>
+            <div class="modal-body">
+                <!-- Add your content here -->
+                <h3 style="text-align: center;">حرف التاء</h3>
+            </div>
+            <div class="modal-footer">
+                <!-- Add the Next button -->
+                <button type="button" style="width:1000px;" class="btn btn-primary" onclick="nextButtonClick()">هيا بنا</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+    <audio id="myAudio">
+        <source src="sounds/حرف الباء.m4a" type="audio/mpeg" />
+    </audio>
+    <!-- Add this audio element in the HTML -->
+    <audio class="errorSound" src="sounds/احابة خاطئة.wav" preload="auto"></audio>
+
+    <audio class="errorSound" src="sounds/إجابة خاطئة يا صديقي.m4a" preload="auto"></audio>
+
+    <audio class="SuccessSound" src="sounds/تصفيق.wav" preload="auto"></audio>
+    <audio class="SuccessSound" src="sounds/أحسنت يا صديقي.m4a" preload="auto"></audio>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <script>
+          window.addEventListener("DOMContentLoaded", (event) => {
+            const audio = document.getElementById("myAudio");
+            audio.play();
+          });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const confirmButton = document.getElementById("confirmButton");
+
+            const latestCards = document.querySelectorAll("#falseCard");
+            latestCards.forEach((card) => {
+                card.addEventListener("click", function () {
+                    $("#confirmModal").modal("show");
+                    confirmButton.addEventListener("click", function () {
+                        // Handle the click action here if needed
+                        $("#confirmModal").modal("hide");
+                    });
+                });
+            });
+        });
+//--------------------- error function --------------------
+        function ConfirmErrorCard() {
+            // Get all elements with the class "errorSound"
+            const errorSounds = document.getElementsByClassName("errorSound");
+
+            // Loop through each element and play the sound
+            for (const sound of errorSounds) {
+                sound.play();
+            }
+            // Get the main card element
+            const mainCard = document.querySelector(".mainCard");
+            mainCard.classList.add("broken-card");
+
+            // Create the "x" icon as an SVG element
+            const errorIcon = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "svg"
+            );
+            errorIcon.setAttribute("class", "errorIcon");
+            errorIcon.setAttribute("width", "100");
+            errorIcon.setAttribute("height", "100");
+            errorIcon.setAttribute("viewBox", "0 0 24 24");
+            errorIcon.setAttribute("fill", "none");
+            errorIcon.setAttribute("stroke", "currentColor");
+            errorIcon.setAttribute("stroke-width", "4");
+            errorIcon.setAttribute("stroke-linecap", "round");
+            errorIcon.setAttribute("stroke-linejoin", "round");
+
+            const iconPath = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "path"
+            );
+            iconPath.setAttribute("d", "M6 18L18 6M6 6l12 12");
+            errorIcon.appendChild(iconPath);
+
+            // Append the "x" icon to the main card
+            mainCard.appendChild(errorIcon);
+
+            // Add your code to handle the click action for the falseCard here
+            console.log("You clicked on the falseCard");
+
+             // Get the <span> element to display the score
+    const scoreElement = document.getElementById("score");
+
+// Retrieve the initial score value from the <span> element
+let score = parseInt(scoreElement.textContent) || 0;
+
+
+
+// Update the score displayed on the page
+scoreElement.textContent = score;
+
+
+const modal = document.getElementById("customModal");
+modal.style.display = "block";
+        }
+
+
+//--------------------- success function --------------------
+        function ConfirmRightCard() {
+            const SuccessSounds = document.getElementsByClassName("SuccessSound");
+    for (const sound of SuccessSounds) {
+        sound.play();
+    }
+
+    // Create a container for the stars
+    const starsContainer = document.createElement("div");
+    starsContainer.classList.add("stars-container");
+
+    // Create the stars elements and add them to the container
+    const numStars = 60; // You can adjust this number to control the number of stars
+    for (let i = 0; i < numStars; i++) {
+        const star = document.createElement("div");
+        star.classList.add("stars");
+        star.style.top = `${Math.random() * 100}vh`;
+        star.style.left = `${Math.random() * 100}vw`;
+        starsContainer.appendChild(star);
+    }
+
+    // Add the stars container to the body
+    document.body.appendChild(starsContainer);
+
+    // Get the <span> element to display the score
+    const scoreElement = document.getElementById("score");
+
+    // Retrieve the initial score value from the <span> element
+    let score = parseInt(scoreElement.textContent) || 0;
+
+    // Increase the score by 10
+    score += 10;
+
+    // Update the score displayed on the page
+    scoreElement.textContent = score;
+
+    // Encode the updated score as a URL parameter
+    const encodedScore = encodeURIComponent(score);
+
+    // // Redirect to the next page with the updated score as a URL parameter
+    // window.location.href = `page3.html?score=${encodedScore}`;       
+
+    const modal = document.getElementById("customModal");
+             modal.style.display = "block";
+}
+
+
+
+       function nextButtonClick(){
+         // Get the score value from the element with the ID "score"
+  const scoreElement = document.getElementById("score");
+  const scoreValue = parseInt(scoreElement.innerText);
+
+  // Encode the score value as a URL parameter
+  const encodedScore = encodeURIComponent(scoreValue);
+
+  // Navigate to page2.html with the score as a URL parameter
+  window.location.href = `page3.html?score=${encodedScore}`;
+
+
+        }
+        
+ // Retrieve the score value from the URL parameter
+ const urlParams = new URLSearchParams(window.location.search);
+    const scoreParam = urlParams.get('score');
+
+    // Parse the scoreParam as an integer (use 0 as default if scoreParam is not a valid number)
+    const decodedScore = parseInt(scoreParam) || 0;
+
+    // Get the <span> element to display the score
+    const scoreElement = document.getElementById("score");
+
+    // Update the score displayed on the page
+    scoreElement.textContent = decodedScore;
+
+
+    
+    </script>
+</body>
+
+
+</html>
